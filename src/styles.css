@@ -36,6 +36,12 @@ hr {
   margin: 0 auto;
 }
 
+.footer {
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+}
+
 .app-card {
   display: block;
   margin: 0 auto;
