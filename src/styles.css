@@ -1,0 +1,113 @@
+body {
+  font-family: "Ubuntu", sans-serif;
+  color: rgba(16, 102, 151, 0.75);
+}
+
+h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 900;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 60px;
+}
+
+h3 {
+  align-self: center;
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  text-align: center;
+  padding-top: 15px;
+}
+
+p {
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: dotted #a6cbdd 5px;
+  width: 10%;
+  margin: 0 auto;
+}
+
+.app-card {
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 500px;
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
+.daylight-icon {
+  width: 12%;
+  position: relative;
+  bottom: 3px;
+  opacity: 0.55;
+}
+
+.fas {
+  padding-bottom: 5px;
+  color: rgb(0, 0, 0, 0.5);
+}
+
+.current-temp-icon {
+  font-size: 100px;
+  padding-bottom: 20px;
+}
+
+.unit {
+  font-size: 16px;
+  position: relative;
+  bottom: 35px;
+}
+
+.day-one,
+.day-two,
+.day-three,
+.day-four,
+.day-five {
+  margin: 10px 5px;
+  border-right: 1px solid rgb(0, 0, 0, 0.08);
+}
+
+.day-five {
+  border: none;
+}
+
+#current-city-btn {
+  margin-left: 8px;
+}
+
+#daylight {
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  top: 50px;
+  right: 15px;
+}
+
+#location-date-daylight {
+  margin-top: 20px;
+}
+
+#current-temperature {
+  text-align: center;
+  margin: 20px auto;
+}
+
+#weekly-forecast {
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+  left: 15px;
+}
+
+#description {
+  text-transform: capitalize;
+}
