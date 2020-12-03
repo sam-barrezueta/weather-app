@@ -37,6 +37,8 @@ function showTemperature(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#description").innerHTML = response.data.weather[0].description;
+  // document.querySelector("#date").innerHTML = response.data.
+  console.log(response.data);
 }
 
 function search(city){
