@@ -27,6 +27,7 @@ ul {
 
 p {
   text-align: center;
+  margin-bottom: 0;
 }
 
 hr {
@@ -62,11 +63,6 @@ hr {
   color: rgb(0, 0, 0, 0.5);
 }
 
-.current-temp-icon {
-  font-size: 100px;
-  padding-bottom: 20px;
-}
-
 .unit {
   font-size: 16px;
   position: relative;
@@ -84,6 +80,19 @@ hr {
 
 .day-five {
   border: none;
+}
+
+#weather-icon {
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+
+#weather-details {
+  text-align: left;
+  position: relative;
+  left: 125px;
+  top: 30px;
 }
 
 #current-city-btn {
@@ -104,7 +113,7 @@ hr {
 
 #current-temperature {
   text-align: center;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
 #weekly-forecast {
