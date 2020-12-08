@@ -69,6 +69,17 @@ hr {
   bottom: 35px;
 }
 
+.active {
+  color: rgba(16, 102, 151, 0.75);
+  cursor: default;
+  font-weight: bold;
+}
+
+.active:hover {
+  text-decoration: none;
+  color: rgba(16, 102, 151, 0.75);
+}
+
 .day-one,
 .day-two,
 .day-three,
