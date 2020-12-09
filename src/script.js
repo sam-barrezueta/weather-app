@@ -26,6 +26,22 @@ function formatDate(timestamp) {
 }
 let dateElement = document.querySelector("#date");
 
+function formatDaylight(timestamp,timezone) {
+let time = new Date((timestamp + timezone) * 1000);
+let hours = time.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+let minutes = time.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+return `${hours}:${minutes}`
+}
+
+let sunriseElement = document.querySelector("#sunrise");
+let sunsetElement = document.querySelector("#sunset");
+
 // SEARCH ENGINE
 
 function showTemperature(response) {
@@ -38,7 +54,8 @@ function showTemperature(response) {
   document.querySelector("#description").innerHTML = response.data.weather[0].description;
   document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);  
-
+  sunriseElement.innerHTML = formatDaylight(response.data.sys.sunrise, response.data.timezone);
+  sunsetElement.innerHTML = formatDaylight(response.data.sys.sunset, response.data.timezone);
 }
 
 function search(city){
