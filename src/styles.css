@@ -19,6 +19,10 @@ h3 {
   font-size: 24px;
 }
 
+h5 {
+  margin: 0;
+}
+
 ul {
   list-style-type: none;
   text-align: center;
@@ -80,19 +84,6 @@ hr {
   color: rgba(16, 102, 151, 0.75);
 }
 
-.day-one,
-.day-two,
-.day-three,
-.day-four,
-.day-five {
-  margin: 10px 5px;
-  border-right: 1px solid rgb(0, 0, 0, 0.08);
-}
-
-.day-five {
-  border: none;
-}
-
 #weather-icon {
   position: relative;
   top: 10px;
@@ -127,11 +118,20 @@ hr {
   margin: 0 auto;
 }
 
-#weekly-forecast {
+#forecast {
   text-align: center;
   margin-top: 30px;
+}
+
+#forecast-icon {
   position: relative;
-  left: 15px;
+  right: 11px;
+  width: 75px;
+}
+
+#forecast-temp {
+  font-size: 14px;
+  text-align: center;
 }
 
 #description {
