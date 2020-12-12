@@ -89,13 +89,15 @@ function showForecast(response) {
 
   for (let index = 1; index < 7; index++) {
     forecast = response.data.daily[index];  
+    celsiusForecastMax = Math.round(forecast.temp.max);
+    celsiusForecastMin = Math.round(forecast.temp.min);
     forecastElement.innerHTML += `
-      <div class="col-2">
+      <div class="col-2 sm-3 forecast-card">
         <h5>${formatDay(forecast.dt * 1000)}</h5>
         <img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" id="forecast-icon">
         <div id="forecast-temp">
-        <strong><span id="forecast-max">${Math.round(forecast.temp.max)}°</span></strong> | 
-        <span id="forecast-min">${Math.round(forecast.temp.min)}°</span>
+        <strong><span id="forecast-max">${celsiusForecastMax}°</span></strong> | 
+        <span id="forecast-min">${celsiusForecastMin}°</span>
         </div>
       </div>
       `;
@@ -141,19 +143,33 @@ currentCityButton.addEventListener("click", showCurrentPosition);
 
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemperature * 9/5) + 32;
+  let fahrenheitTemperature = (celsiusTemperature * 9/5) + 32;  
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
+
+  let forecastMaxElement = document.querySelector("#forecast-max");
+  let fahrenheitForecastMax = (celsiusForecastMax * 9/5) + 32;
+  forecastMaxElement.innerHTML = Math.round(fahrenheitForecastMax);
+  
+  let forecastMinElement = document.querySelector("#forecast-min");
+  let fahrenheitForecastMin = (celsiusForecastMin * 9/5) + 32;
+  forecastMinElement.innerHTML = Math.round(fahrenheitForecastMin);
 }
+
 function convertToCelsius(event) {
   event.preventDefault();
-temperatureElement.innerHTML = celsiusTemperature
-celsiusLink.classList.add("active");
-fahrenheitLink.classList.remove("active");
+  let forecastMaxElement = document.querySelector("#forecast-max");
+  let forecastMinElement = document.querySelector("#forecast-min");
+  temperatureElement.innerHTML = celsiusTemperature;
+  forecastMaxElement.innerHTML = celsiusForecastMax;
+  forecastMinElement.innerHTML = celsiusForecastMin;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 let celsiusTemperature = null;
+let celsiusForecastMax = null;
 let temperatureElement = document.querySelector("#temperature");
 
 
