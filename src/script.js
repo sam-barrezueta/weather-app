@@ -1,5 +1,4 @@
 // DATE & TIME
-
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let dayIndex = [
@@ -85,19 +84,16 @@ function showForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-   console.log(response.data); 
 
   for (let index = 1; index < 7; index++) {
     forecast = response.data.daily[index];  
-    celsiusForecastMax = Math.round(forecast.temp.max);
-    celsiusForecastMin = Math.round(forecast.temp.min);
     forecastElement.innerHTML += `
       <div class="col-2 sm-3 forecast-card">
         <h5>${formatDay(forecast.dt * 1000)}</h5>
         <img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" id="forecast-icon">
         <div id="forecast-temp">
-        <strong><span id="forecast-max">${celsiusForecastMax}°</span></strong> | 
-        <span id="forecast-min">${celsiusForecastMin}°</span>
+        <strong><span class="forecast-max">${Math.round(forecast.temp.max)}°</span></strong> | 
+        <span class="forecast-min">${Math.round(forecast.temp.min)}°</span>
         </div>
       </div>
       `;
@@ -108,7 +104,6 @@ function search(city) {
   let apiKey = "aef650f4f97d6be4e2588d635fe74f28";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
- 
 }
 
 function submitCity(event) {
@@ -119,9 +114,7 @@ function submitCity(event) {
 let searchForm = document.querySelector("#button-addon2");
 searchForm.addEventListener("click", submitCity);
 
-
 // CURRENT-CITY BUTTON
-
   function retrieveCoordinates(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -140,7 +133,6 @@ currentCityButton.addEventListener("click", showCurrentPosition);
 
 
 // UNIT CONVERSION
-
 function convertToFahrenheit(event) {
   event.preventDefault();
   let fahrenheitTemperature = (celsiusTemperature * 9/5) + 32;  
@@ -148,35 +140,50 @@ function convertToFahrenheit(event) {
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
 
-  let forecastMaxElement = document.querySelector("#forecast-max");
-  let fahrenheitForecastMax = (celsiusForecastMax * 9/5) + 32;
-  forecastMaxElement.innerHTML = Math.round(fahrenheitForecastMax);
+  let forecastMaxElements = document.querySelectorAll(".forecast-max");
+  forecastMaxElements.forEach(function (item) {
+  let currentTemp = item.innerHTML;
+  item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
   
-  let forecastMinElement = document.querySelector("#forecast-min");
-  let fahrenheitForecastMin = (celsiusForecastMin * 9/5) + 32;
-  forecastMinElement.innerHTML = Math.round(fahrenheitForecastMin);
+  let forecastMinElements = document.querySelectorAll(".forecast-min");
+  forecastMinElements.forEach(function (item) {
+  let currentTemp = item.innerHTML;
+  item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  fahrenheitLink.removeEventListener("click", convertToFahrenheit);
+  celsiusLink.addEventListener("click", convertToCelsius);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
-  let forecastMaxElement = document.querySelector("#forecast-max");
-  let forecastMinElement = document.querySelector("#forecast-min");
   temperatureElement.innerHTML = celsiusTemperature;
-  forecastMaxElement.innerHTML = celsiusForecastMax;
-  forecastMinElement.innerHTML = celsiusForecastMin;
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+
+  let forecastMaxElements = document.querySelectorAll(".forecast-max");
+  forecastMaxElements.forEach(function (item) {
+  let currentTemp = item.innerHTML;
+  item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+  
+  let forecastMinElements = document.querySelectorAll(".forecast-min");
+  forecastMinElements.forEach(function (item) {
+  let currentTemp = item.innerHTML;
+  item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  fahrenheitLink.addEventListener("click", convertToFahrenheit);
+  celsiusLink.removeEventListener("click", convertToCelsius);
 }
 
 let celsiusTemperature = null;
-let celsiusForecastMax = null;
 let temperatureElement = document.querySelector("#temperature");
 
 
 let celsiusLink = document.querySelector("#celsius-link");
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-
-
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 celsiusLink.addEventListener("click", convertToCelsius);
 
