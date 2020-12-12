@@ -20,16 +20,21 @@
 			<div class="card-body">
 
 				<!-- Search Bar -->
-				<div class="input-group mb-3" id="search-form">
-					<input type="text" class="form-control" placeholder="Search city..."
-						aria-describedby="button-addon2" id="city-input">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+				<form class="mb-3" id="search-form">
+					<div class="row">
+						<div class="col-9 search-bar">
+							<input type="search" placeholder="Search city..." class="form-control" id="city-input" autocomplete="off"/>
+						</div>
+						<div class="col-1 search-button">
+							<button type="submit" class="btn btn-outline-secondary" id="button-addon2" autocomplete="off"><i class="fas fa-search"></i></button>
+						</div>
+						<div class="col-1 search-button">
+							<button type="button" class="btn btn-outline-secondary" id="current-city-btn"><i class="fas fa-location-arrow"></i></button>
+						</div>
 					</div>
+				</form>
 
-						<button type="button" class="btn btn-outline-secondary" id="current-city-btn">Current City</button>
-				</div>
-
+				
 				<!-- Today's Weather -->
 				<div class="row" id="location-date-daylight">
 					<div class="col-6">
@@ -66,7 +71,16 @@
 				<hr />
 	
 				<!-- Weekly Forecast Grid -->
-				<div class="row" id="forecast"></div>
+				<div class="row" id="forecast">
+						<!-- <div class="col-2">
+							<h5></h5>
+							<img src="#" id="forecast-icon">
+							<div id="forecast-temp"> -->
+								<!-- <strong><span id="forecast-max"></span></strong> |
+								<span id="forecast-min"></span>
+							</div> -->
+						</div>
+				</div>
 			</div>
 		</div>
 

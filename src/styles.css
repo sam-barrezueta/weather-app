@@ -3,6 +3,11 @@ body {
   color: rgba(16, 102, 151, 0.75);
 }
 
+form {
+  position: relative;
+  left: 10px;
+}
+
 h1 {
   text-align: center;
   font-size: 36px;
@@ -39,6 +44,10 @@ hr {
   border-top: dotted #a6cbdd 5px;
   width: 10%;
   margin: 0 auto;
+}
+
+.search-bar {
+  padding: 0;
 }
 
 .footer {
@@ -130,7 +139,7 @@ hr {
 }
 
 #forecast-temp {
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
 }
 
