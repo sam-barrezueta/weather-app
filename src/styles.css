@@ -61,7 +61,7 @@ hr {
   margin: 0 auto;
   margin-top: 50px;
   width: 500px;
-  background-image: linear-gradient(to bottom, #ace0f9 20%, #fff1eb 80%);
+  background-image: linear-gradient(to top, #ace0f9 20%, #fff1eb 80%);
 }
 
 .daylight-icon {
