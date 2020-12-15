@@ -61,14 +61,15 @@ function formatDay(timestamp) {
 let units = "metric";
 
 function showTemperature(response) {
-  celsiusTemperature = Math.round(response.data.main.temp)
+  celsiusTemperature = Math.round(response.data.main.temp);
+  windSpeedKm = Math.round(response.data.wind.speed);
   let apiKey = "aef650f4f97d6be4e2588d635fe74f28";
   let lat = (response.data.coord.lat);
   let lon = (response.data.coord.lon);
   document.querySelector("#city-name").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = celsiusTemperature;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#wind").innerHTML = windSpeedKm;
   document.querySelector("#description").innerHTML = response.data.weather[0].description;
   document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   document.querySelector("#weather-icon").setAttribute("alt", "response.data.weather[0].description");
@@ -140,6 +141,10 @@ function convertToFahrenheit(event) {
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
 
+  let windSpeedMiles = windSpeedKm / 1.609;
+  windElement.innerHTML = Math.round(windSpeedMiles);
+  windUnitElement.innerHTML = " m/ph";
+
   let forecastMaxElements = document.querySelectorAll(".forecast-max");
   forecastMaxElements.forEach(function (item) {
   let currentTemp = item.innerHTML;
@@ -162,6 +167,9 @@ function convertToCelsius(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 
+  windElement.innerHTML = windSpeedKm;
+  windUnitElement.innerHTML = " km/ph";
+
   let forecastMaxElements = document.querySelectorAll(".forecast-max");
   forecastMaxElements.forEach(function (item) {
   let currentTemp = item.innerHTML;
@@ -180,6 +188,9 @@ function convertToCelsius(event) {
 
 let celsiusTemperature = null;
 let temperatureElement = document.querySelector("#temperature");
+let windSpeedKm = null;
+let windElement = document.querySelector("#wind");
+let windUnitElement = document.querySelector("#wind-unit");
 
 
 let celsiusLink = document.querySelector("#celsius-link");
