@@ -25,21 +25,19 @@ function formatDate(timestamp) {
 }
 let dateElement = document.querySelector("#date");
 
-function formatDaylight(timestamp,timezone) {
-let time = new Date((timestamp + timezone) * 1000);
-let hours = time.getHours();
+function formatDaylight(dt) {
+let time = new Date(dt * 1000);
+let hours = time.getUTCHours();
 if (hours < 10) {
   hours = `0${hours}`;
 }
-let minutes = time.getMinutes();
+let minutes = time.getUTCMinutes();
 if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 return `${hours}:${minutes}`;
 }
 
-let sunriseElement = document.querySelector("#sunrise");
-let sunsetElement = document.querySelector("#sunset");
 
 function formatDay(timestamp) {
   let date = new Date(timestamp);
@@ -74,8 +72,17 @@ function showTemperature(response) {
   document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   document.querySelector("#weather-icon").setAttribute("alt", "response.data.weather[0].description");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);  
-  sunriseElement.innerHTML = formatDaylight(response.data.sys.sunrise, response.data.timezone);
-  sunsetElement.innerHTML = formatDaylight(response.data.sys.sunset, response.data.timezone);
+
+  
+  let sunriseResponse = response.data.sys.sunrise + response.data.timezone;
+  let sunrise = formatDaylight(sunriseResponse);
+  let sunriseElement = document.querySelector("#sunrise");
+  sunriseElement.innerHTML = `${sunrise}`;
+
+  let sunsetResponse = response.data.sys.sunset + response.data.timezone;
+  let sunset = formatDaylight(sunsetResponse);
+  let sunsetElement = document.querySelector("#sunset");
+  sunsetElement.innerHTML = `${sunset}`;
 
   geoApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   axios.get(geoApiUrl).then(showForecast);
